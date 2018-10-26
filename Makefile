@@ -1,5 +1,3 @@
-SHELL:=/bin/bash
-
 WORDPRESS_TOOLBOX=docker-compose run --rm wordpress_toolbox
 
 start:
