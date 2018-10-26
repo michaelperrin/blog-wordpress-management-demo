@@ -1,9 +1,6 @@
 Blog article related to this repository: http://blog.michaelperrin.fr/2018/10/26/automate-wordpress-part-1/
 
-Init project:
-
-    docker-compose build
-    docker-compose up -d
+To have a fully working Wordpress installation, just clone this project and run the following commands.
 
 Install Wordpress:
 
