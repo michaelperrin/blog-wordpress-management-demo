@@ -1,12 +1,14 @@
-FROM php:7.2-fpm-alpine
+FROM php:7.3-fpm-alpine
 
 # Install necessary extensions.
 # Code comes from Wordpress official Docker image.
+# See https://github.com/docker-library/wordpress/blob/master/php7.3/fpm-alpine/Dockerfile
 RUN set -ex; \
     \
     apk add --no-cache --virtual .build-deps \
     libjpeg-turbo-dev \
     libpng-dev \
+    libzip-dev \
     ; \
     \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
