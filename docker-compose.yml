@@ -42,8 +42,8 @@ services:
     depends_on:
       - wordpress_database
     environment:
-      WORDPRESS_VERSION: 4.9.8
-      WORDPRESS_LOCALE: fr_FR
+      WORDPRESS_VERSION: 5.1
+      WORDPRESS_LOCALE: en_US
       WORDPRESS_DB_HOST: wordpress_database
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
