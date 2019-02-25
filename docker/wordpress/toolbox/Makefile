@@ -31,6 +31,6 @@ configure:
 	$(WP_CLI) option update siteurl "${WORDPRESS_WEBSITE_URL}"
 	$(WP_CLI) rewrite structure $(WORDPRESS_WEBSITE_POST_URL_STRUCTURE)
 
-# TODO
 update:
 	$(WP_CLI) core update --version=${WORDPRESS_VERSION} --locale=${WORDPRESS_LOCALE}
+	$(WP_CLI) core update-db
