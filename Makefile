@@ -15,9 +15,6 @@ wordpress_configure:
 wordpress_install_plugins:
 	$(WORDPRESS_TOOLBOX) install_plugins
 
-wordpress_update: start
-	$(WORDPRESS_TOOLBOX) update
-
 clean: stop
 	@echo "💥 Removing Wordpress..."
 	@rm -rf wordpress

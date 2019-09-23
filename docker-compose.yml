@@ -1,17 +1,17 @@
 version: '3'
 services:
-  wordpress_php:
-    build: ./docker/wordpress/php/
+  wordpress:
+    image: wordpress:5.2-php7.3-fpm-alpine
     depends_on:
       - wordpress_database
     volumes:
-      - ./docker/wordpress/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
-      - ./wordpress:/var/www/wordpress
-    working_dir: /var/www/wordpress
+      - wordpress_data:/var/www/html
 
   wordpress_database:
     image: mysql:5.7
     restart: always
+    volumes:
+      - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: my_root_password
       MYSQL_DATABASE: wordpress
@@ -21,28 +21,21 @@ services:
   wordpress_webserver:
     image: nginx:1.14-alpine
     depends_on:
-      - wordpress_php
+      - wordpress
     volumes:
       - ./docker/wordpress/nginx/app.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./wordpress:/var/www/wordpress
+      - wordpress_data:/var/www/html
     ports:
       - 80:80
-
-  # wp_cli:
-  #   build: ./docker/wordpress/wp-cli/
-  #   volumes:
-  #     - ./wordpress:/var/www/wordpress
-  #   working_dir: /var/www/wordpress
 
   wordpress_toolbox:
     build: ./docker/wordpress/toolbox/
     volumes:
-      - ./wordpress:/var/www/wordpress
-    working_dir: /var/www/wordpress
+      - wordpress_data:/wordpress
+    working_dir: /wordpress
     depends_on:
       - wordpress_database
     environment:
-      WORDPRESS_VERSION: 5.1
       WORDPRESS_LOCALE: en_US
       WORDPRESS_DB_HOST: wordpress_database
       WORDPRESS_DB_NAME: wordpress
@@ -57,3 +50,7 @@ services:
       WORDPRESS_ADMIN_USER: "admin_user"
       WORDPRESS_ADMIN_PASSWORD: "admin_password"
       WORDPRESS_ADMIN_EMAIL: "test@example.com"
+
+volumes:
+  db_data: {}
+  wordpress_data: {}

@@ -12,11 +12,3 @@ Configure Wordpress:
 
 That's it! Wordpress was **installed** and **configured** without any manual
 clicks in some interface and is now ready to be visited at http://localhost .
-
-## Update Wordpress
-
-Change the Wordpress version in the `WORDPRESS_VERSION` environment variable
-in `docker-compose.yml` and type this command:
-
-    make wordpress_update
-

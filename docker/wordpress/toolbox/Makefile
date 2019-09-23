@@ -1,13 +1,6 @@
 WP_CLI=wp-cli --allow-root
 
-install: download configure
-
-download:
-	@echo "⬇️ Downloading Wordpress..."
-
-	$(WP_CLI) core download \
-		--version=${WORDPRESS_VERSION} \
-		--locale=${WORDPRESS_LOCALE} \
+install: configure
 
 configure:
 	@echo "⚙️ Configuring Wordpress database..."
@@ -30,7 +23,3 @@ configure:
 
 	$(WP_CLI) option update siteurl "${WORDPRESS_WEBSITE_URL}"
 	$(WP_CLI) rewrite structure $(WORDPRESS_WEBSITE_POST_URL_STRUCTURE)
-
-update:
-	$(WP_CLI) core update --version=${WORDPRESS_VERSION} --locale=${WORDPRESS_LOCALE}
-	$(WP_CLI) core update-db
